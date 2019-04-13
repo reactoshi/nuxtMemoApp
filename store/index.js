@@ -8,18 +8,19 @@ export const state = () => ({
   ]
 })
 
-export const plugins = [
-  (store) => {
-    store.subscribe(() => {
-      localStorage.memoData = JSON.stringify(store.state.memoInfoList)
-    })
-  },
-  (store) => {
-    if (localStorage.memoData) {
-      store.commit('initMemo', JSON.parse(localStorage.memoData))
-    }
-  }
-]
+// herokuにあげるとき、localStorage errorになるので一旦外す
+// export const plugins = [
+//   (store) => {
+//     store.subscribe(() => {
+//       localStorage.memoData = JSON.stringify(store.state.memoInfoList)
+//     })
+//   },
+//   (store) => {
+//     if (localStorage.memoData) {
+//       store.commit('initMemo', JSON.parse(localStorage.memoData))
+//     }
+//   }
+// ]
 
 export const mutations = {
   initMemo(state, memoData) {
