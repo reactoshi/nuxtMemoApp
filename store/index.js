@@ -3,7 +3,7 @@ export const state = () => ({
     {
       posX: 20,
       posY: 20,
-      text: 'fafewafa'
+      text: 'Please input memo'
     }
   ]
 })
@@ -26,16 +26,27 @@ export const mutations = {
     state.memoInfoList = memoData
   },
   addMemo(state) {
-    const lastMemo = state.memoInfoList[state.memoInfoList.length - 1]
-
-    state.memoInfoList = [
-      ...state.memoInfoList,
-      {
-        posX: lastMemo.posX + 220,
-        posY: lastMemo.posY + 20,
-        text: ''
-      }
-    ]
+    const lastMemo = state.memoInfoList[0]
+    // const lastMemo = state.memoInfoList[state.memoInfoList.length - 1]
+    if (state.memoInfoList.posX) {
+      state.memoInfoList = [
+        ...state.memoInfoList,
+        {
+          posX: lastMemo.posX,
+          posY: lastMemo.posY,
+          text: ''
+        }
+      ]
+    } else {
+      state.memoInfoList = [
+        ...state.memoInfoList,
+        {
+          posX: 20,
+          posY: 20,
+          text: ''
+        }
+      ]
+    }
   },
   removeMemo(state, i) {
     state.memoInfoList = state.memoInfoList.filter((memo, index) => index !== i)
