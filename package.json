@@ -1,6 +1,9 @@
 {
   "name": "nuxtMemoApp",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.12.0"
+  },
   "description": "My first-class Nuxt.js project",
   "author": "",
   "private": true,
