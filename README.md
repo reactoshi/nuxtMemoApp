@@ -1,4 +1,4 @@
-# toshiMemo
+# nuxtMemoApp
 
 > My first-class Nuxt.js project
 
