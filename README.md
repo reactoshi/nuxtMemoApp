@@ -1,5 +1,8 @@
 # nuxtMemoApp
 
+<img width="1201" alt="nuxtMemoApp" src="https://user-images.githubusercontent.com/44398968/56081952-f8224900-5e4d-11e9-9779-f24e7a3f03e7.png">
+
+
 > My first-class Nuxt.js project
 
 ## Build Setup
