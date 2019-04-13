@@ -2,7 +2,7 @@
   <div
     class="remove-button"
     @click="$emit('remove')"
-  >X</div>
+  >×</div>
 </template>
 
 <script>
@@ -14,9 +14,10 @@ export default {
 <style scoped>
 .remove-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
+  top: -10px;
+  right: 0px;
+  font-size: 30px;
   cursor: pointer;
+  color: #fff;
 }
 </style>
