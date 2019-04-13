@@ -1,12 +1,12 @@
 const pkg = require('./package')
 
 module.exports = {
-  mode: 'spa',
-
-  server: {
-    port: 5000, // デフォルト: 3000
-    host: '0.0.0.0', // デフォルト: localhost
-  },
+  // mode: 'spa',
+  //
+  // server: {
+  //   port: 5000, // デフォルト: 3000
+  //   host: '0.0.0.0', // デフォルト: localhost
+  // },
   // その他の設定
 
   /*
