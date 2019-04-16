@@ -32,6 +32,6 @@ export default {
   width: 100%;
   background: transparent;
   font-size: 20px;
-  color: #fff;
+  resize: none;
 }
 </style>

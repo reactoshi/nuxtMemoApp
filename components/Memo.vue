@@ -14,6 +14,7 @@
       :text="text"
       @inputed="onInputed"
     />
+    <background-box />
   </div>
 </template>
 
@@ -21,12 +22,14 @@
 import DragHandler from '~/components/DragHandler.vue'
 import TextBox from '~/components/TextBox.vue'
 import RemoveBtn from '~/components/RemoveBtn.vue'
+import BackgroundBox from '~/components/BackgroundBox.vue'
 
 export default {
   components: {
     DragHandler,
     TextBox,
-    RemoveBtn
+    RemoveBtn,
+    BackgroundBox
   },
   props: {
     posX: {
@@ -55,6 +58,12 @@ export default {
     }
   }
 }
+
+// new Vue({
+//   el: ".col-md-10",
+//   data: {a: "#6B8CFF" , b: 'red'},
+// })
+
 </script>
 
 <style scoped>
@@ -62,6 +71,7 @@ export default {
   position: fixed;
   width: 200px;
   height: 300px;
-  background: center/cover url('~assets/memo.jpg');
+  background: yellow;
+  /* background: center/cover url('~assets/memo.jpg'); */
 }
 </style>

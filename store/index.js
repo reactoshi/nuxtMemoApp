@@ -3,6 +3,7 @@ export const state = () => ({
     {
       posX: 20,
       posY: 20,
+      backgroundColor: 'red',
       text: 'Please input memo'
     }
   ]
@@ -26,7 +27,17 @@ export const mutations = {
   initMemo(state, memoData) {
     state.memoInfoList = memoData
   },
+  changeColor(state) {
+    // console.log(state)
+    // const lastMemo = state.memoInfoList[0]
+    // state.memoInfoList[0].backgroundColor = 'blue'
+    // lastMemo.backgroundColor = colorList[3]
+    // console.log(lastMemo.backgroundColor)
+    // console.log(state.memoInfoList)
+    // console.log('changed color')
+  },
   addMemo(state) {
+    // const colorList = ['yellow', 'red', 'blue', 'green', 'pink']
     const lastMemo = state.memoInfoList[0]
     // const lastMemo = state.memoInfoList[state.memoInfoList.length - 1]
     if (state.memoInfoList.posX) {
@@ -35,6 +46,7 @@ export const mutations = {
         {
           posX: lastMemo.posX,
           posY: lastMemo.posY,
+          // backgroundColor: colorList[2],
           text: ''
         }
       ]
@@ -44,6 +56,7 @@ export const mutations = {
         {
           posX: 20,
           posY: 20,
+          backgroundColor: lastMemo.backgroundColor,
           text: ''
         }
       ]
