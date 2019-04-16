@@ -1,6 +1,6 @@
 <template>
   <div
-    @click="changeColor"
+    @click="colorClicked"
     class="color-box"
     :style="{
       background: `${backgroundColor}`
@@ -10,25 +10,17 @@
 
 <script>
 export default {
-  props: {
-    backgroundColor: {
-      type: String,
-      required: true
-    }
-  },
+  // props: {
+  //   backgroundColor: {
+  //     type: String,
+  //     required: true
+  //   }
+  // },
   methods: {
-    changeColor() {
+    colorClicked() {
       this.$emit('color-clicked')
     }
   }
-  // methods: {
-  //   onClicked() {
-  //     // console.log(this)
-  //     this.$store.commit('changeColor', {
-  //       // index: this.index
-  //     })
-  //   }
-  // }
 }
 </script>
 

@@ -2,7 +2,7 @@
   <div
     :style="{
       top: `${posY}px`,
-      left: `${posX}px`
+      left: `${posX}px`,
     }"
     class="memo"
   >
@@ -14,7 +14,16 @@
       :text="text"
       @inputed="onInputed"
     />
-    <background-box />
+    <color-box
+    v-for="(i) in backgroundColorList.length"
+    @color-clicked=onClicked(i)
+    :key="i"
+    :index="i"
+    :style="{
+      background: `${backgroundColorList[i-1]}`,
+      left: `${i*40-40}px`
+    }"
+    />
   </div>
 </template>
 
@@ -22,14 +31,14 @@
 import DragHandler from '~/components/DragHandler.vue'
 import TextBox from '~/components/TextBox.vue'
 import RemoveBtn from '~/components/RemoveBtn.vue'
-import BackgroundBox from '~/components/BackgroundBox.vue'
+import ColorBox from '~/components/ColorBox.vue'
 
 export default {
   components: {
     DragHandler,
     TextBox,
     RemoveBtn,
-    BackgroundBox
+    ColorBox
   },
   props: {
     posX: {
@@ -49,20 +58,23 @@ export default {
       required: true
     }
   },
+  data: function () {
+    return {
+      backgroundColorList: ['yellow', 'green', 'blue', 'pink', 'orange']
+    }
+  },
   methods: {
     onInputed(text) {
       this.$store.commit('setText', {
         text,
         index: this.index
       })
+    },
+    onClicked(i) {
+      this.$store.commit('changeColor', i)
     }
   }
 }
-
-// new Vue({
-//   el: ".col-md-10",
-//   data: {a: "#6B8CFF" , b: 'red'},
-// })
 
 </script>
 
