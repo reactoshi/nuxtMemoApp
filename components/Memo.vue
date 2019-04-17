@@ -60,7 +60,8 @@ export default {
   },
   data: function () {
     return {
-      backgroundColorList: ['yellow', 'green', 'blue', 'pink', 'orange']
+      backgroundColorList: ['yellow', 'green', 'blue', 'pink', 'orange'],
+      reactive: true
     }
   },
   methods: {
@@ -71,7 +72,8 @@ export default {
       })
     },
     onClicked(i) {
-      this.$store.commit('changeColor', i)
+      this.backgroundColor = this.backgroundColorList[i - 1]
+      this.$store.commit('changeColor', this)
     }
   }
 }
@@ -83,7 +85,6 @@ export default {
   position: fixed;
   width: 200px;
   height: 300px;
-  background: yellow;
   /* background: center/cover url('~assets/memo.jpg'); */
 }
 </style>

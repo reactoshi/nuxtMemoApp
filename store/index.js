@@ -3,7 +3,8 @@ export const state = () => ({
     {
       posX: 20,
       posY: 20,
-      backgroundColor: ['yellow', 'green', 'blue', 'pink', 'orange'],
+      firstMemoColor: 'yellow',
+      memoColor: 'yellow',
       text: 'Please input memo'
     }
   ]
@@ -27,22 +28,11 @@ export const mutations = {
   initMemo(state, memoData) {
     state.memoInfoList = memoData
   },
-  changeColor(state, index) {
-    console.log(state)
-    const memoColor = document.querySelector('.memo')
-    memoColor.style.backgroundColor = state.memoInfoList[0].backgroundColor[index - 1]
-    console.log(memoColor)
-    // const lastMemo = state.memoInfoList[0]
-    // state.memoInfoList[0].backgroundColor = 'blue'
-    // lastMemo.backgroundColor = colorList[3]
-    // console.log(lastMemo.backgroundColor)
-    // console.log(state.memoInfoList)
-    // console.log('changed color')
+  changeColor(state, elm) {
+    elm.$store.state.memoInfoList[elm.index].memoColor = elm.backgroundColor
   },
   addMemo(state, index) {
-    // const colorList = ['yellow', 'red', 'blue', 'green', 'pink']
     const lastMemo = state.memoInfoList[0]
-    console.log(state)
     // const lastMemo = state.memoInfoList[state.memoInfoList.length - 1]
     if (state.memoInfoList.posX) {
       state.memoInfoList = [
@@ -50,7 +40,6 @@ export const mutations = {
         {
           posX: lastMemo.posX,
           posY: lastMemo.posY,
-          backgroundColor: lastMemo.backgroundColor[index - 1],
           text: ''
         }
       ]
@@ -60,7 +49,7 @@ export const mutations = {
         {
           posX: 20,
           posY: 20,
-          backgroundColor: lastMemo.backgroundColor,
+          memoColor: 'yellow',
           text: ''
         }
       ]
