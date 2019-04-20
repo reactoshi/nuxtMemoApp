@@ -18,6 +18,5 @@ export default {
   right: 0px;
   font-size: 30px;
   cursor: pointer;
-  color: #fff;
 }
 </style>
