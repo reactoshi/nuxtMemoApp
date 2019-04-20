@@ -1,29 +1,38 @@
 <template>
   <div
-    @click="colorClicked"
     class="color-box"
+    :style="{ background: color }"
+    @click="changeColor"
   />
 </template>
 
 <script>
 export default {
+  props: {
+    color: {
+      type: String,
+      required: true
+    },
+    index: {
+      type: Number,
+      required: true
+    }
+  },
   methods: {
-    colorClicked() {
-      this.$emit('color-clicked')
+    changeColor() {
+      this.$store.commit('setColor', {
+        color: this.color,
+        index: this.index
+      })
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 .color-box {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  z-index: 10000
+  width: 50px;
+  height: 50px;
+  float: left;
 }
-
 </style>

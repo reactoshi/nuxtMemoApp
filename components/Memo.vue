@@ -3,6 +3,7 @@
     :style="{
       top: `${posY}px`,
       left: `${posX}px`,
+      background: bgColor
     }"
     class="memo"
   >
@@ -14,16 +15,14 @@
       :text="text"
       @inputed="onInputed"
     />
-    <color-box
-    v-for="(i) in backgroundColorList.length"
-    @color-clicked=onClicked(i)
-    :key="i"
-    :index="i"
-    :style="{
-      background: `${backgroundColorList[i-1]}`,
-      left: `${i*40-40}px`
-    }"
-    />
+    <div class="color-pallet">
+      <color-box
+        v-for="color in colorList"
+        :key="color"
+        :color="color"
+        :index="index"
+      />
+    </div>
   </div>
 </template>
 
@@ -53,16 +52,17 @@ export default {
       type: String,
       required: true
     },
+    bgColor: {
+      type: String,
+      required: true
+    },
     index: {
       type: Number,
       required: true
     }
   },
-  data: function () {
-    return {
-      backgroundColorList: ['yellow', 'green', 'blue', 'pink', 'orange'],
-      reactive: true
-    }
+  computed: {
+    colorList: () => ['#ff0', '#f00', '#0f0', '#00f']
   },
   methods: {
     onInputed(text) {
@@ -70,14 +70,9 @@ export default {
         text,
         index: this.index
       })
-    },
-    onClicked(i) {
-      this.backgroundColor = this.backgroundColorList[i - 1]
-      this.$store.commit('changeColor', this)
     }
   }
 }
-
 </script>
 
 <style scoped>
@@ -85,6 +80,10 @@ export default {
   position: fixed;
   width: 200px;
   height: 300px;
-  /* background: center/cover url('~assets/memo.jpg'); */
+}
+
+.color-pallet {
+  position: absolute;
+  bottom: 0;
 }
 </style>

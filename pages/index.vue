@@ -11,9 +11,7 @@
         :pos-x="memoInfo.posX"
         :pos-y="memoInfo.posY"
         :text="memoInfo.text"
-        :style="{
-          backgroundColor: memoInfo.memoColor
-        }"
+        :bgColor="memoInfo.color"
         :index="i"
         @dragStart="dragStart(i, $event)"
         @dragEnd="dragEnd"
@@ -63,13 +61,6 @@ export default {
 
       this.prevX = $event.pageX
       this.prevY = $event.pageY
-    },
-    memoClicked() {
-      this.$store.commit('changeColor', {
-        // index: this.draggingIndex,
-        // deltaX: $event.pageX - this.prevX,
-        // deltaY: $event.pageY - this.prevY
-      })
     }
   }
 }

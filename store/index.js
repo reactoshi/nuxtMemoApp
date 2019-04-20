@@ -3,44 +3,40 @@ export const state = () => ({
     {
       posX: 20,
       posY: 20,
-      firstMemoColor: 'yellow',
-      memoColor: 'yellow',
-      text: 'Please input memo'
+      text: '',
+      color: '#ff0'
     }
   ]
 })
 
-// herokuにあげるとき、localStorage errorになるので一旦外す
-// export const plugins = [
-//   (store) => {
-//     store.subscribe(() => {
-//       localStorage.memoData = JSON.stringify(store.state.memoInfoList)
-//     })
-//   },
-//   (store) => {
-//     if (localStorage.memoData) {
-//       store.commit('initMemo', JSON.parse(localStorage.memoData))
-//     }
-//   }
-// ]
+export const plugins = [
+  (store) => {
+    store.subscribe(() => {
+      localStorage.memoData = JSON.stringify(store.state.memoInfoList)
+    })
+  },
+  (store) => {
+    if (localStorage.memoData) {
+      store.commit('initMemo', JSON.parse(localStorage.memoData))
+    }
+  }
+]
 
 export const mutations = {
   initMemo(state, memoData) {
     state.memoInfoList = memoData
   },
-  changeColor(state, elm) {
-    elm.$store.state.memoInfoList[elm.index].memoColor = elm.backgroundColor
-  },
-  addMemo(state, index) {
-    const lastMemo = state.memoInfoList[0]
+  addMemo(state) {
     // const lastMemo = state.memoInfoList[state.memoInfoList.length - 1]
+    const lastMemo = state.memoInfoList[0]
     if (state.memoInfoList.posX) {
       state.memoInfoList = [
         ...state.memoInfoList,
         {
           posX: lastMemo.posX,
           posY: lastMemo.posY,
-          text: ''
+          text: '',
+          color: '#ff0'
         }
       ]
     } else {
@@ -49,8 +45,8 @@ export const mutations = {
         {
           posX: 20,
           posY: 20,
-          memoColor: 'yellow',
-          text: ''
+          text: '',
+          color: '#ff0'
         }
       ]
     }
@@ -69,6 +65,25 @@ export const mutations = {
         return memoInfo
       }
     })
+  },
+  setColor(state, { color, index }) {
+    state.memoInfoList = state.memoInfoList.map((memoInfo, i) => {
+      if (i === index) {
+        return {
+          ...memoInfo,
+          color
+        }
+      } else {
+        return memoInfo
+      }
+    })
+
+    // map使わずにクローンして、色を変える方法
+    // state.memoInfoList = [...state.memoInfoList]
+    // state.memoInfoList[index] = {
+    //   ...state.memoInfoList[index],
+    //   color
+    // }
   },
   dragMemo(state, { index, deltaX, deltaY }) {
     state.memoInfoList = state.memoInfoList.map((memo, i) => {
